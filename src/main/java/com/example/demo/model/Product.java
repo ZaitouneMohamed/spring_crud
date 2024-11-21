@@ -14,9 +14,11 @@ public class Product {
 
     @NotEmpty(message = "name is required")
     @Size(min = 2, max = 100, message = "product Name should be between 2 and 100 characters")
+    @Column(unique = true)
     private String name;
 
     @NotEmpty(message = "categorie is required")
+    @Column(name="categorie")
     private String categorie;
 
     public void setId(Long id) {
