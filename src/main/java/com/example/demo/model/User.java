@@ -1,9 +1,9 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -36,9 +36,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @NotEmpty(message = "username is required")
+    @Size(min = 2, max = 100, message = "userName should be between 2 and 100 characters")
+    @Column(unique = true)
     private String username;
 
+    @NotEmpty(message = "email is required")
+    @Email(message = "invalid email format")
+    @Column(unique = true)
+    private String email;
 
+
+    @NotEmpty(message = "password is required")
+    @Size(min = 2, max = 100, message = "product Name should be between 2 and 100 characters")
     private String password;
 }
